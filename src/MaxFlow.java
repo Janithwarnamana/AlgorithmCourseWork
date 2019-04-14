@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class MaxFlow {
 
@@ -16,64 +14,55 @@ public class MaxFlow {
         int input_j = 0;
         int permission = 0;
 
-//        int maxFlow;
-//        int [][]graph = new int[0][0];
-//        int source = 0;
-//        int sink = 0;
-
-
-        Scanner node = new Scanner(System.in);
-        System.out.println("Enter the number of nodes");
-        numberOfNodes = node.nextInt();
-
-        System.out.println("You can Enter Nodes from Below.. ");
-
-        for (int x = 0; x <= (numberOfNodes * numberOfNodes); x++) {
-
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("If You Want ENTER A NODE ? \n(if YES press 1 ,is NO press 0)");
-            permission = scanner.nextInt();
-
-            if (permission == 1) {
-
-                Scanner i = new Scanner(System.in);
-                System.out.println("Enter The 'i' value");
-                input_i = i.nextInt();
-
-                Scanner j = new Scanner(System.in);
-                System.out.println("Enter The 'j' value");
-                input_j = j.nextInt();
-
-                Scanner val = new Scanner(System.in);
-                System.out.println("Enter the Value ");
-                value = val.nextInt();
-
-
-                DataPoint dataPoint = new DataPoint(input_i, input_j, value);
-                matrixArrayList.add(dataPoint);
-            } else {
-
-//                System.out.println("Enter the source of the graph");
-//                source= scanner.nextInt();
+//        Scanner node = new Scanner(System.in);
+//        System.out.println("Enter the number of nodes");
+//        numberOfNodes = node.nextInt();
 //
-//                System.out.println("Enter the sink of the graph");
-//                sink = scanner.nextInt();
-
-                break;
-
-
-            }
-//            System.out.println("Enter the graph matrix");
-//            for (int sourceVertex = 1; sourceVertex <= numberOfNodes; sourceVertex++)
-//            {
-//                for (int destinationVertex = 1; destinationVertex <= numberOfNodes; destinationVertex++)
-//                {
-//                    graph[sourceVertex][destinationVertex] = scanner.nextInt();
-//                }
+//        System.out.println("You can Enter Nodes from Below.. ");
+//
+//        for (int x = 0; x <= (numberOfNodes * numberOfNodes); x++) {
+//
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.println("If You Want ENTER A NODE ? \n(if YES press 1 ,is NO press 0)");
+//            permission = scanner.nextInt();
+//
+//            if (permission == 1) {
+//
+//                Scanner i = new Scanner(System.in);
+//                System.out.println("Enter The 'i' value");
+//                input_i = i.nextInt();
+//
+//                Scanner j = new Scanner(System.in);
+//                System.out.println("Enter The 'j' value");
+//                input_j = j.nextInt();
+//
+//                Scanner val = new Scanner(System.in);
+//                System.out.println("Enter the Value ");
+//                value = val.nextInt();
+//
+//
+//                DataPoint dataPoint = new DataPoint(input_i, input_j, value);
+//                matrixArrayList.add(dataPoint);
+//            } else {
+//                break;
 //            }
+//        }
 
 
-        }
+        numberOfNodes = 4;
+//        matrixArrayList.add(new DataPoint(1, 2, 5));
+//        matrixArrayList.add(new DataPoint(1, 3, 10));
+//        matrixArrayList.add(new DataPoint(2, 3, 8));
+//        matrixArrayList.add(new DataPoint(3, 2, 4));
+//        matrixArrayList.add(new DataPoint(2, 4, 5));
+//        matrixArrayList.add(new DataPoint(3, 4, 9));
+
+        matrixArrayList.add(new DataPoint(1, 2, 5));
+        matrixArrayList.add(new DataPoint(1, 3, 10));
+        matrixArrayList.add(new DataPoint(2, 3, 8));
+        matrixArrayList.add(new DataPoint(3, 2, 4));
+        matrixArrayList.add(new DataPoint(2, 4, 5));
+        matrixArrayList.add(new DataPoint(3, 4, 9));
 
         Matrix matrix = new Matrix(numberOfNodes);
 
@@ -84,9 +73,8 @@ public class MaxFlow {
         }
         System.out.println(matrix.toString());
 
-//        Matrix fordFulkerson = new Matrix(numberOfNodes);
-//        maxFlow = fordFulkerson.fordFulkerson(graph, source, sink);
-//        System.out.println("The Max Flow is " + maxFlow);
+        int fordFulkerson = matrix.fordFulkerson(matrix.getAdjMatrix(), 1, 4);
+        System.out.println("The Max Flow is " + fordFulkerson);
 
 
     }

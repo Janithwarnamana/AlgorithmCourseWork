@@ -1,0 +1,69 @@
+Index: src/MaxFlow.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Scanner;\n\npublic class MaxFlow {\n\n    private static int value = 0;\n\n\n    public static void main(String args[]) {\n\n        ArrayList<DataPoint> matrixArrayList = new ArrayList<>();\n\n        int numberOfNodes;\n        int input_i = 0;\n        int input_j = 0;\n        int permission = 0;\n\n//        int maxFlow;\n//        int [][]graph = new int[0][0];\n//        int source = 0;\n//        int sink = 0;\n\n\n        Scanner node = new Scanner(System.in);\n        System.out.println(\"Enter the number of nodes\");\n        numberOfNodes = node.nextInt();\n\n        System.out.println(\"You can Enter Nodes from Below.. \");\n\n        for (int x = 0; x <= (numberOfNodes * numberOfNodes); x++) {\n\n            Scanner scanner = new Scanner(System.in);\n            System.out.println(\"If You Want ENTER A NODE ? \\n(if YES press 1 ,is NO press 0)\");\n            permission = scanner.nextInt();\n\n            if (permission == 1) {\n\n                Scanner i = new Scanner(System.in);\n                System.out.println(\"Enter The 'i' value\");\n                input_i = i.nextInt();\n\n                Scanner j = new Scanner(System.in);\n                System.out.println(\"Enter The 'j' value\");\n                input_j = j.nextInt();\n\n                Scanner val = new Scanner(System.in);\n                System.out.println(\"Enter the Value \");\n                value = val.nextInt();\n\n\n                DataPoint dataPoint = new DataPoint(input_i, input_j, value);\n                matrixArrayList.add(dataPoint);\n            } else {\n\n//                System.out.println(\"Enter the source of the graph\");\n//                source= scanner.nextInt();\n//\n//                System.out.println(\"Enter the sink of the graph\");\n//                sink = scanner.nextInt();\n\n                break;\n\n\n            }\n//            System.out.println(\"Enter the graph matrix\");\n//            for (int sourceVertex = 1; sourceVertex <= numberOfNodes; sourceVertex++)\n//            {\n//                for (int destinationVertex = 1; destinationVertex <= numberOfNodes; destinationVertex++)\n//                {\n//                    graph[sourceVertex][destinationVertex] = scanner.nextInt();\n//                }\n//            }\n\n\n        }\n\n        Matrix matrix = new Matrix(numberOfNodes);\n\n        for (int i = 0; i < matrixArrayList.size(); i++) {\n\n            matrix.addEdge(matrixArrayList.get(i).getNum1(), matrixArrayList.get(i).getNum2(), matrixArrayList.get(i).getCapacity());\n\n        }\n        System.out.println(matrix.toString());\n\n//        Matrix fordFulkerson = new Matrix(numberOfNodes);\n//        maxFlow = fordFulkerson.fordFulkerson(graph, source, sink);\n//        System.out.println(\"The Max Flow is \" + maxFlow);\n\n\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/MaxFlow.java	(date 1555262908000)
++++ src/MaxFlow.java	(date 1555263015976)
+@@ -1,5 +1,4 @@
+ import java.util.ArrayList;
+-import java.util.Arrays;
+ import java.util.Scanner;
+ 
+ public class MaxFlow {
+@@ -16,12 +15,6 @@
+         int input_j = 0;
+         int permission = 0;
+ 
+-//        int maxFlow;
+-//        int [][]graph = new int[0][0];
+-//        int source = 0;
+-//        int sink = 0;
+-
+-
+         Scanner node = new Scanner(System.in);
+         System.out.println("Enter the number of nodes");
+         numberOfNodes = node.nextInt();
+@@ -52,27 +45,8 @@
+                 DataPoint dataPoint = new DataPoint(input_i, input_j, value);
+                 matrixArrayList.add(dataPoint);
+             } else {
+-
+-//                System.out.println("Enter the source of the graph");
+-//                source= scanner.nextInt();
+-//
+-//                System.out.println("Enter the sink of the graph");
+-//                sink = scanner.nextInt();
+-
+                 break;
+-
+-
+             }
+-//            System.out.println("Enter the graph matrix");
+-//            for (int sourceVertex = 1; sourceVertex <= numberOfNodes; sourceVertex++)
+-//            {
+-//                for (int destinationVertex = 1; destinationVertex <= numberOfNodes; destinationVertex++)
+-//                {
+-//                    graph[sourceVertex][destinationVertex] = scanner.nextInt();
+-//                }
+-//            }
+-
+-
+         }
+ 
+         Matrix matrix = new Matrix(numberOfNodes);
+@@ -84,11 +58,6 @@
+         }
+         System.out.println(matrix.toString());
+ 
+-//        Matrix fordFulkerson = new Matrix(numberOfNodes);
+-//        maxFlow = fordFulkerson.fordFulkerson(graph, source, sink);
+-//        System.out.println("The Max Flow is " + maxFlow);
+-
+-
+     }
+ 
+ }
+\ No newline at end of file
