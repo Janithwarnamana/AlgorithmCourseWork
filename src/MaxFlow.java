@@ -1,82 +1,108 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MaxFlow {
 
     private static int value = 0;
 
+    private ArrayList<DataPoint> matrixArrayList = new ArrayList<>();
+    private int numberOfNodes;
+    private int source;
+    private int destination;
+
 
     public static void main(String args[]) {
 
-        ArrayList<DataPoint> matrixArrayList = new ArrayList<>();
+        MaxFlow maxFlow = new MaxFlow();
+        maxFlow.initializeMaxFLow();
 
-        int numberOfNodes;
-        int input_i = 0;
-        int input_j = 0;
-        int permission = 0;
+    }
 
-//        Scanner node = new Scanner(System.in);
-//        System.out.println("Enter the number of nodes");
-//        numberOfNodes = node.nextInt();
-//
-//        System.out.println("You can Enter Nodes from Below.. ");
-//
-//        for (int x = 0; x <= (numberOfNodes * numberOfNodes); x++) {
-//
-//            Scanner scanner = new Scanner(System.in);
-//            System.out.println("If You Want ENTER A NODE ? \n(if YES press 1 ,is NO press 0)");
-//            permission = scanner.nextInt();
-//
-//            if (permission == 1) {
-//
-//                Scanner i = new Scanner(System.in);
-//                System.out.println("Enter The 'i' value");
-//                input_i = i.nextInt();
-//
-//                Scanner j = new Scanner(System.in);
-//                System.out.println("Enter The 'j' value");
-//                input_j = j.nextInt();
-//
-//                Scanner val = new Scanner(System.in);
-//                System.out.println("Enter the Value ");
-//                value = val.nextInt();
-//
-//
-//                DataPoint dataPoint = new DataPoint(input_i, input_j, value);
-//                matrixArrayList.add(dataPoint);
-//            } else {
-//                break;
-//            }
-//        }
+    private void initializeMaxFLow() {
 
+        //User flow execute here
+        matrixArrayList = getUserInput();
 
-        numberOfNodes = 4;
-//        matrixArrayList.add(new DataPoint(1, 2, 5));
-//        matrixArrayList.add(new DataPoint(1, 3, 10));
-//        matrixArrayList.add(new DataPoint(2, 3, 8));
-//        matrixArrayList.add(new DataPoint(3, 2, 4));
-//        matrixArrayList.add(new DataPoint(2, 4, 5));
-//        matrixArrayList.add(new DataPoint(3, 4, 9));
+        //Mock input flow execute here
+//        matrixArrayList = getMockInputs();
 
-        matrixArrayList.add(new DataPoint(1, 2, 5));
-        matrixArrayList.add(new DataPoint(1, 3, 10));
-        matrixArrayList.add(new DataPoint(2, 3, 8));
-        matrixArrayList.add(new DataPoint(3, 2, 4));
-        matrixArrayList.add(new DataPoint(2, 4, 5));
-        matrixArrayList.add(new DataPoint(3, 4, 9));
-
+        //Add inputs to matrix
         Matrix matrix = new Matrix(numberOfNodes);
-
         for (int i = 0; i < matrixArrayList.size(); i++) {
-
-            matrix.addEdge(matrixArrayList.get(i).getNum1(), matrixArrayList.get(i).getNum2(), matrixArrayList.get(i).getCapacity());
-
+            matrix.addEdge(matrixArrayList.get(i));
         }
         System.out.println(matrix.toString());
 
-        int fordFulkerson = matrix.fordFulkerson(matrix.getAdjMatrix(), 1, 4);
+        AlgoUtility algoUtility = new AlgoUtility();
+        algoUtility.initializeAlgorithm(numberOfNodes);
+        int fordFulkerson = algoUtility.fordFulkerson(matrix.getAdjMatrix(), source, destination);
+
         System.out.println("The Max Flow is " + fordFulkerson);
 
+    }
 
+    /**
+     * used only for test purposes only
+     */
+    private ArrayList<DataPoint> getMockInputs() {
+
+        ArrayList<DataPoint> mockArrayList = new ArrayList<>();
+        mockArrayList.add(new DataPoint(1, 2, 5));
+        mockArrayList.add(new DataPoint(1, 3, 10));
+        mockArrayList.add(new DataPoint(2, 3, 8));
+        mockArrayList.add(new DataPoint(3, 2, 4));
+        mockArrayList.add(new DataPoint(2, 4, 5));
+        mockArrayList.add(new DataPoint(3, 4, 9));
+        numberOfNodes = mockArrayList.size();
+        source = 1;
+        destination = 4;
+        return mockArrayList;
+    }
+
+    private ArrayList<DataPoint> getUserInput() {
+
+        ArrayList<DataPoint> matrixArrayList = new ArrayList<>();
+        int permission;
+        int input_i;
+        int input_j;
+        Scanner node = new Scanner(System.in);
+        System.out.println("Enter the number of nodes");
+        numberOfNodes = node.nextInt();
+
+        System.out.println("You can Enter Nodes from Below.. ");
+
+        for (int x = 0; x <= (numberOfNodes * numberOfNodes); x++) {
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("If You Want ENTER A NODE ? \n(if YES press 1 ,is NO press 0)");
+            permission = scanner.nextInt();
+
+            if (permission == 1) {
+
+                Scanner i = new Scanner(System.in);
+                System.out.println("Enter The 'i' value");
+                input_i = i.nextInt();
+
+                Scanner j = new Scanner(System.in);
+                System.out.println("Enter The 'j' value");
+                input_j = j.nextInt();
+
+                Scanner val = new Scanner(System.in);
+                System.out.println("Enter the Value ");
+                value = val.nextInt();
+
+                DataPoint dataPoint = new DataPoint(input_i, input_j, value);
+                matrixArrayList.add(dataPoint);
+            } else {
+                break;
+            }
+        }
+        Scanner val = new Scanner(System.in);
+        System.out.println("Enter the Source ");
+        source = val.nextInt();
+        System.out.println("Enter the Source ");
+        destination = val.nextInt();
+        return matrixArrayList;
     }
 
 }
