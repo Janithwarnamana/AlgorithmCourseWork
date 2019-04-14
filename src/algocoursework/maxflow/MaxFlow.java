@@ -23,21 +23,47 @@ public class MaxFlow {
         ArrayList<DataPoint> matrixArrayList = getUserInput();
 
         //Mock input flow execute here
-//        ArrayList<algocoursework.maxflow.DataPoint> matrixArrayList = getMockInputs();
+//        ArrayList<DataPoint> matrixArrayList = getMockInputs();
 
         //Add inputs to matrix
+        Matrix matrix = getMatrix(matrixArrayList);
+//        int[][] grid = matrix.getAdjMatrix();
+
+        int grid[][] = mockData();
+
+        AlgoUtility algoUtility = new AlgoUtility();
+        algoUtility.initializeAlgorithm(numberOfNodes);
+        int fordFulkerson = algoUtility.fordFulkerson(grid, source, destination);
+
+        System.out.println("The Max Flow is " + fordFulkerson);
+
+    }
+
+    private int[][] mockData() {
+
+        numberOfNodes = 6;
+        source = 1;
+        destination = 6;
+
+        int grid[][] = new int[][]{
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 16, 13, 0, 0, 0},
+                {0, 0, 0, 10, 12, 0, 0},
+                {0, 0, 4, 0, 0, 14, 0},
+                {0, 0, 0, 9, 0, 0, 20},
+                {0, 0, 0, 0, 7, 0, 4},
+                {0, 0, 0, 0, 0, 0, 0}
+        };
+        return grid;
+    }
+
+    private Matrix getMatrix(ArrayList<DataPoint> matrixArrayList) {
         Matrix matrix = new Matrix(numberOfNodes);
         for (int i = 0; i < matrixArrayList.size(); i++) {
             matrix.addEdge(matrixArrayList.get(i));
         }
         System.out.println(matrix.toString());
-
-        AlgoUtility algoUtility = new AlgoUtility();
-        algoUtility.initializeAlgorithm(numberOfNodes);
-        int fordFulkerson = algoUtility.fordFulkerson(matrix.getAdjMatrix(), source, destination);
-
-        System.out.println("The Max Flow is " + fordFulkerson);
-
+        return matrix;
     }
 
     /**
@@ -99,7 +125,7 @@ public class MaxFlow {
         Scanner val = new Scanner(System.in);
         System.out.println("Enter the Source ");
         source = val.nextInt();
-        System.out.println("Enter the Source ");
+        System.out.println("Enter the Sink ");
         destination = val.nextInt();
         return matrixArrayList;
     }
