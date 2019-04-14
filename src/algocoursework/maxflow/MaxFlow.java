@@ -1,3 +1,5 @@
+package algocoursework.maxflow;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,7 +23,7 @@ public class MaxFlow {
         ArrayList<DataPoint> matrixArrayList = getUserInput();
 
         //Mock input flow execute here
-//        ArrayList<DataPoint> matrixArrayList = getMockInputs();
+//        ArrayList<algocoursework.maxflow.DataPoint> matrixArrayList = getMockInputs();
 
         //Add inputs to matrix
         Matrix matrix = new Matrix(numberOfNodes);

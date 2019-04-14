@@ -1,3 +1,5 @@
+package algocoursework.maxflow;
+
 import java.util.LinkedList;
 import java.util.Queue;
 

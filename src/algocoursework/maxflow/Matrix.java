@@ -1,3 +1,5 @@
+package algocoursework.maxflow;
+
 public class Matrix {
 
     private int adjMatrix[][];

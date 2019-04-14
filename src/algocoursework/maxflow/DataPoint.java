@@ -1,3 +1,5 @@
+package algocoursework.maxflow;
+
 public class DataPoint {
 
     private int num1;
@@ -30,7 +32,7 @@ public class DataPoint {
 
     @Override
     public String toString() {
-        return "DataPoint{" +
+        return "algocoursework.maxflow.DataPoint{" +
                 "num1=" + num1 +
                 ", num2=" + num2 +
                 ", capacity=" + capacity +
