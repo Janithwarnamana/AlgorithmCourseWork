@@ -1,10 +1,16 @@
 package algocoursework.maxflow;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class MaxFlow {
 
+    public static final int MIN_NODES = 4;
+    public static final int MAX_NODES = 10;
+    public static final int MAX_CAPACITY = 20;
+    public static final int MIN_CAPACITY = 5;
     private int numberOfNodes;
     private int source;
     private int destination;
@@ -25,19 +31,22 @@ public class MaxFlow {
         //Mock input flow execute here
 //        ArrayList<DataPoint> matrixArrayList = getMockInputs();
 
+        //Random inputs
+//        ArrayList<DataPoint> matrixArrayList = getRandomInputs();
+
         //Add inputs to matrix
-        Matrix matrix = getMatrix(matrixArrayList);
+        Matrix matrix = getMatrix(matrixArrayList,numberOfNodes);
         int[][] grid = matrix.getAdjMatrix();
 
         AlgoUtility algoUtility = new AlgoUtility();
-        algoUtility.initializeAlgorithm(numberOfNodes);
+        algoUtility.initializeAlgorithm(matrixArrayList.size());
         int fordFulkerson = algoUtility.fordFulkerson(grid, source, destination);
 
         System.out.println("The Max Flow is " + fordFulkerson);
 
     }
 
-    private Matrix getMatrix(ArrayList<DataPoint> matrixArrayList) {
+    private Matrix getMatrix(ArrayList<DataPoint> matrixArrayList,int numberOfNodes) {
         Matrix matrix = new Matrix(numberOfNodes);
         for (int i = 0; i < matrixArrayList.size(); i++) {
             matrix.addEdge(matrixArrayList.get(i));
@@ -63,6 +72,7 @@ public class MaxFlow {
         destination = 4;
         return mockArrayList;
     }
+
 
     private ArrayList<DataPoint> getUserInput() {
 
@@ -110,4 +120,31 @@ public class MaxFlow {
         return matrixArrayList;
     }
 
+    private ArrayList<DataPoint> getRandomInputs() {
+
+
+        numberOfNodes = getRandomNodes();
+
+        ArrayList<DataPoint> mockArrayList = new ArrayList<>();
+
+        for(int i = 0; i< numberOfNodes-1;i++)
+        {
+            for(int j = 1; j< numberOfNodes;j++)
+            {
+                mockArrayList.add(new DataPoint(i+1, j+1, getRandomCapacity()));
+            }
+        }
+        source = 1;
+        destination = numberOfNodes;
+        return mockArrayList;
+    }
+
+    private int getRandomCapacity() {
+        return ThreadLocalRandom.current().nextInt(MIN_CAPACITY, MAX_CAPACITY +1 );
+    }
+
+
+    public int getRandomNodes() {
+        return ThreadLocalRandom.current().nextInt(MIN_NODES, MAX_NODES + 1);
+    }
 }
