@@ -27,9 +27,7 @@ public class MaxFlow {
 
         //Add inputs to matrix
         Matrix matrix = getMatrix(matrixArrayList);
-//        int[][] grid = matrix.getAdjMatrix();
-
-        int grid[][] = mockData();
+        int[][] grid = matrix.getAdjMatrix();
 
         AlgoUtility algoUtility = new AlgoUtility();
         algoUtility.initializeAlgorithm(numberOfNodes);
@@ -37,24 +35,6 @@ public class MaxFlow {
 
         System.out.println("The Max Flow is " + fordFulkerson);
 
-    }
-
-    private int[][] mockData() {
-
-        numberOfNodes = 6;
-        source = 1;
-        destination = 6;
-
-        int grid[][] = new int[][]{
-                {0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 16, 13, 0, 0, 0},
-                {0, 0, 0, 10, 12, 0, 0},
-                {0, 0, 4, 0, 0, 14, 0},
-                {0, 0, 0, 9, 0, 0, 20},
-                {0, 0, 0, 0, 7, 0, 4},
-                {0, 0, 0, 0, 0, 0, 0}
-        };
-        return grid;
     }
 
     private Matrix getMatrix(ArrayList<DataPoint> matrixArrayList) {
