@@ -3,9 +3,6 @@ import java.util.Scanner;
 
 public class MaxFlow {
 
-    private static int value = 0;
-
-    private ArrayList<DataPoint> matrixArrayList = new ArrayList<>();
     private int numberOfNodes;
     private int source;
     private int destination;
@@ -21,10 +18,10 @@ public class MaxFlow {
     private void initializeMaxFLow() {
 
         //User flow execute here
-        matrixArrayList = getUserInput();
+        ArrayList<DataPoint> matrixArrayList = getUserInput();
 
         //Mock input flow execute here
-//        matrixArrayList = getMockInputs();
+//        ArrayList<DataPoint> matrixArrayList = getMockInputs();
 
         //Add inputs to matrix
         Matrix matrix = new Matrix(numberOfNodes);
@@ -89,7 +86,7 @@ public class MaxFlow {
 
                 Scanner val = new Scanner(System.in);
                 System.out.println("Enter the Value ");
-                value = val.nextInt();
+                int value = val.nextInt();
 
                 DataPoint dataPoint = new DataPoint(input_i, input_j, value);
                 matrixArrayList.add(dataPoint);
